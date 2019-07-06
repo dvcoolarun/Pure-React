@@ -1,0 +1,32 @@
+.file-list {
+    font-family: Helvetica, sans-serif;
+    width: 980px;
+    color: #333;
+    margin: 0 auto;
+    border: 1px solid #ccc;
+    border-collapse: collapse;
+}
+
+.file-list div {
+    border-top: 1px solid #ccc;
+}
+
+.file-name {
+    padding-left: 10px;
+    width: 200px;
+    display: inline-block;
+}
+
+.file-icon {
+    width: 17px;
+    padding-left: 4px;
+}
+
+.file-icon .fa-folder {
+    color: #508FCA;
+}
+
+.age {
+    float: right;
+    padding-right: 4px;
+}
