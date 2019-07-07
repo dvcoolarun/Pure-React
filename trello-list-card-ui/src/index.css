@@ -1,0 +1,17 @@
+.card-list {
+    width: 90%;
+    margin: 0 5%;
+    border: 1px solid;
+}
+
+.card-list-item {
+    border: 1px solid;
+    display: inline-grid;
+    margin: 4%;
+    width: 25%;
+    text-align: center
+}
+
+todo{
+    padding: 20px;
+}
