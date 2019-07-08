@@ -1,0 +1,66 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: #eee;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+.main-container {
+    padding: 2% 0;
+    width: 80%;
+    margin: 0 auto;
+}
+.header {
+    background: #fff;
+}
+.logo-container{
+    margin: 0 auto;
+    width: 30%;
+    text-align: center;
+}
+
+.logo-container img {
+    width: 60px;
+    border-radius: 100%;
+}
+
+.data-points-container{
+    margin: 0 auto;
+    width: 60%;
+}
+
+.data-points-container li{
+    display: inline-block;
+    margin-right: 10%;
+}
+.card-info {
+    display: inline-block;
+    width: 30%;
+    background: #fff;
+    border-radius: 2%;
+    padding-bottom: 2%;
+    margin-top: 2%;
+    margin-right: 3.3%;
+    text-align: center;   
+}
+
+.card-info .main-img {
+    width: 300px;
+    height: 150px;
+    margin: 0 4%;
+}
+.card-info .follow-button button {
+    width: 90%;
+    margin: 0 auto;
+    color: red;
+    padding: 2% 0;
+    margin-top: 2%;
+}
