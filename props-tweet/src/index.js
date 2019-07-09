@@ -3,7 +3,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
-// Add the { tweet } prop, destructured
+// Add the { tweet } prop, destructured 
+
 function Tweet({ tweet }) {
     return (
         <div className="tweet">
@@ -156,17 +157,19 @@ const MoreOptionsButton = () => (
 );
 
 // ...
-var testTweet = {
-    message: "Something about cats.",
-    gravatar: "xyz",
-    author: {
-        handle: "catperson",
-        name: "IAMA Cat Person"
+var testTweet = [
+    {
+        message: "Something about cats.",
+        gravatar: "xyz",
+        author: {
+            handle: "catperson",
+            name: "IAMA Cat Person"
+        },
+        likes: 2,
+        retweets: 2,
+        timestamp: "2019-7-1 11:24:37"
     },
-    likes: 2,
-    retweets: 2,
-    timestamp: "2019-7-1 11:24:37"
-};
+];
 
-ReactDOM.render(<Tweet tweet={testTweet}/>, 
+ReactDOM.render(<TweetList tweets={testTweet}/>, 
     document.querySelector('#root'));

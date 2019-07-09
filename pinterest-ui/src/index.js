@@ -43,7 +43,7 @@ const CardListItem = ({ card }) => (
       <div className="sub-img">
         {card.thumb_img.map(thumb_img => (
             <img alt="" src={thumb_img}/>
-        ))}        
+        ))}
       </div>
       <div className="follow-button">
         <button>Follow</button>

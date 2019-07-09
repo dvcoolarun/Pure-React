@@ -66,14 +66,11 @@ const PostListItem = ({ post, index }) => (
     </div>
 );
 
-const TopIcon = () => (
-    <span><i className="far fa-triangle"></i></span>
-);
-
 const Title = ({ title, url, index }) => (
     <div className="title">
       <span>
         <span className="index"> {index+1}. </span>
+        <span className="top-icon"><i className="fas fa-triangle"></i></span>
         <a href={url}>{title}</a>
       </span>
     </div>

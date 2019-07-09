@@ -35,7 +35,7 @@ Tweet.propTypes = {
 };
 
 function Avatar({ hash }) {
-    var url = 'https://www.gravatar.com/avatar/${hash}';
+    const url = 'https://www.gravatar.com/avatar/${hash}';
     return (
         <img 
             src={url}
