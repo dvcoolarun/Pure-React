@@ -47,7 +47,7 @@
 
 // Here the new version of Parent, renamed to CountingParent
 
-
+``` 
 class CountingParent extends React.component {
       state = {
       	    actionCount: 0
@@ -141,15 +141,11 @@ this.setState({name: 'Joe'}), function() {
      return the same results. 
   */
 
-  /* 
-     Functional setState is the prefered way to call setState because it's
-     guranteed to work correctly, every time. */
+     Functional setState is the prefered way to call setState because it's guranteed to work correctly, every time. */
      
-     Passing an object to setState works fine(much of the time), but it's like
-     playing with fire. It's fun untill you get burned and spend 30 minutes
-     trying to figure out why your state isn't updating the way you expect.
+     Passing an object to setState works fine(much of the time), but it's like playing with fire. It's fun untill you get burned and spend 30 minutes trying to figure out why your state isn't updating the way you expect.
   */
-
+```
   /* 
      ***Shallow vs Deep Merge***
 
@@ -203,7 +199,7 @@ this.setState({name: 'Joe'}), function() {
         
        *** It won't replace the top-level state, but it will only update
        one level deep ***/
-
+```
     /* Handling Events */
     
     * According to convention React's events are named with camelCase like onClick, onSubmit, onKeyDown...
@@ -225,7 +221,7 @@ this.setState({name: 'Joe'}), function() {
       	cleared out the time you go look at it. You also can' access it asynchronously.
 
 	** If you need to access an event asynchronously, call event.persist() and React will keep it around.
-    
+```
       ## ** What to Put in State **
       
       **  How do you decide what should go into state? Is there anywhere else to store persistent data?
@@ -255,58 +251,53 @@ this.setState({name: 'Joe'}), function() {
 	    *** Other stateful data, like handles to timers, should be
 	    stored on the component itself. You've got a **this** object
 	    available in class component classes, feel free to use it!
-    	
+
+```
 	*** Should Props Go in State? ***
 	
-	-> You should avoid copying props into state. It creates a second
-	   source of truth for your data, which usually leads to bugs.
-	   One source of truth is always best. **If you find yourself 
-	   copying a prop into state and then thinking "Now I'm going to keep this updated?"
-	   -- take a step back and rethink.
+	-> You should avoid copying props into state. It creates a second source of truth for your data, which usually leads to bugs. One source of truth is always best. **If you find yourself copying a prop into state and then thinking "Now I'm going to keep this updated?" -- take a step back and rethink.
 
-        -> Component will automatically render when their props change, so
-	   There's no need to duplicate the props as state and then try to
-	   Keep it up to date.
+    -> Component will automatically render when their props change, so there's no need to duplicate the props as state and then try to Keep it up to date.
 
 	-> // Don't do this
 	
-	-> Intializing State from Props 
-	   	       -> However, It's not anti-pattern if you make it clear
-		       	  that the prop is only seed data for the component's
-			  internally-controlled state.
-			  			
-		       -> Think of it this way: it's fine if the state needs
-		          a starting value which then component will then control.
-			  
-		       -> Ask yourself: Does this component "own" the data?
-		       	  Does it just need a default value from a prop?
-			  Those are good reasons to initialize state from a prop.
+    > Intializing State from Props 
+    
+However, It's not anti-pattern if you make it clear that the prop is only seed data for the component's
+internally-controlled state.
+    
+-> Think of it this way: it's fine if the state needs
+a starting value which then component will then control.
 
+-> Ask yourself: Does this component "own" the data?
+Does it just need a default value from a prop?
+Those are good reasons to initialize state from a prop.
 
-class BadExample extends Component {
-    state = {
-        data: props.data
+```
+    class BadExample extends Component {
+        state = {
+            data: props.data
+        }
     }
-}
-ComponentDidUpdate(oldprops) {
-    /* Duplicating the data, you have to keep the 
-      local copy in sync with the updated props */
+    ComponentDidUpdate(oldprops) {
+        /* Duplicating the data, you have to keep the 
+        local copy in sync with the updated props */
 
-    if(oldprops.data !== this.props.data){
-        // unneccasary re-render
-        this.setState({
-            data: this.props.data
-        });
+        if(oldprops.data !== this.props.data){
+            // unneccasary re-render
+            this.setState({
+                data: this.props.data
+            });
+        }
     }
-}
-render() {
-    return(
-        <div>
-          The data: {this.state.data}
-        </div>
-    );
-}
-
+    render() {
+        return(
+            <div>
+            The data: {this.state.data}
+            </div>
+        );
+    }
+```
 // ...
 
 class GoodExample extends Component {
@@ -319,30 +310,32 @@ class GoodExample extends Component {
     }
 }
 
-/* Data stored inside state should be render somewhere
-  Component state is for storing UI state. */
+```
+    Data stored inside state should be render somewhere
+    Component state is for storing UI state. */
 
-Things that affect the visual rendering of the page.
+    Things that affect the visual rendering of the page.
 
-This makes the sense any time state is updated, the component
-will re-render.
+    This makes the sense any time state is updated, the component
+    will re-render.
 
-### If modiying a piece of data does not visually change the component, that data shouldn't go into state.
+    ### If modiying a piece of data does not visually change the component, that data shouldn't go into state.
 
-### What to put in the state
+    ### What to put in the state
 
-** User-entered input(Values of text-boxes and other form-fields)
+    ** User-entered input(Values of text-boxes and other form-fields)
 
-** Current or selected Item (the current tab, the selected row)
+    ** Current or selected Item (the current tab, the selected row)
 
-** Data from the server(a list of products, the number of "likes" on the page.
+    ** Data from the server(a list of products, the number of "likes" on the page.
 
-** Open/Closed State (modal open/closed, sidebar expanded/hidden)
+    ** Open/Closed State (modal open/closed, sidebar expanded/hidden)
 
-** Other Stateful data, like handles to timers should be stored
-on the component itself. You've got a **this** object available
-in class components classes.
+    ** Other Stateful data, like handles to timers should be stored
+    on the component itself. You've got a **this** object available
+    in class components classes.
 
+```
 class BadExample extends Component {
     state = {
         data: props.data
@@ -380,74 +373,72 @@ class GoodExample extends Component {
     }
 
 }
+```
 
-/** Intializing State from the Props **/
+    /** Intializing State from the Props **/
 
-* Prop is only seed data for the component's internally-controlled state.
+    * Prop is only seed data for the component's internally-controlled state.
 
-* Think of it this way: it's fine if the state needs a 
-   Starting value which the component will then control.
+    * Think of it this way: it's fine if the state needs a 
+    Starting value which the component will then control.
 
-    
-    ((( Ask yourself Does this component "own" the data?
+        ((( Ask yourself Does this component "own" the data?
 
-    Does it need a Default value from a prop?
+        Does it need a Default value from a prop?
 
-    Those are good reasons to Intialize state from a prop. )))
+        Those are good reasons to Intialize state from a prop. )))
 
+```
 ** Thinking Declaratively **
 
-<Accordian isOpen={true}/>
+    <Accordian isOpen={true}/>
 
-<Accordian isOpen={false}/>
+    <Accordian isOpen={false}/>
 
-The Accordian can be displayed in either "open" state or the
-"close" state and we store the information as a flag inside the
-Parent component state.
+    The Accordian can be displayed in either "open" state or the
+    "close" state and we store the information as a flag inside the
+    Parent component state.
 
-/*
+    
     We tell the accordian which way to render by passing isOpen
     as a prop. When isOpen is true, it renders as open. When isOpen
     is false, it renders as closed. 
-*/
 
-/* The biggest difference is that in the declarative React way,     the expand/collapse state can be stored outside the 
-    Accordion and passed in as prop.
 
-/* Opening and Closing a Dialog */
+    The biggest difference is that in the declarative React way,     the expand/collapse state can be stored outside the Accordion and passed in as prop.
 
-The old way: Clicking a button opens the modal. Clicking its
-close button closes it.
+    /* Opening and Closing a Dialog */
 
-The Declarative Way: Whether or not the Modal is open is a state, It's either "open" state or the "closed" state. So if 
-it's "open", We render the model, "closed" we don't render the model. Moreover we can pass an onClose callback to the Modal.
+    The old way: Clicking a button opens the modal. Clicking its
+    close button closes it.
 
-(This way the parent component gets to decide what happens
-when the user clicks close.)
+    The Declarative Way: Whether or not the Modal is open is a state, It's either "open" state or the "closed" state. So if 
+    it's "open", We render the model, "closed" we don't render the model. Moreover we can pass an onClose callback to the Modal.
 
-<div>
-    {this.state.isModalOpen && 
-        Modal onClose={this.handleClose}/>}
-</div>
+    (This way the parent component gets to decide what happens
+    when the user clicks close.)
 
-<div>
-    {this.state.isModelOpen && 
-        <Modal onClose={this.handleClose}>}
-</div>
+    <div>
+        {this.state.isModelOpen && 
+            <Modal onClose={this.handleClose}>}
+    </div>
 
-/*** Notifications ***/
+```
 
-** Old Way **
-When an event occurs (like an error) call a notifcation library to display a popup, like toastr.error("Oh no!")
+    /*** Notifications ***/
 
-*** The Declarative Way ***
+    ** Old Way **
+    When an event occurs (like an error) call a notifcation library to display a popup, like toastr.error("Oh no!")
 
-Think of notifications as state. There can be zero notifications or 1 or 2, Store those in an array.
+    *** The Declarative Way ***
 
-Put a NotificationTray component somewhere near the root of the app, and pass it the message to display.
+    Think of notifications as state. There can be zero notifications or 1 or 2, Store those in an array.
 
-*** You can manage the array of messages in the root component's state, and pass an addNotification prop-down to components that need to be able to surface notifications.
+    Put a NotificationTray component somewhere near the root of the app, and pass it the message to display.
 
+    *** You can manage the array of messages in the root component's state, and pass an addNotification prop-down to components that need to be able to surface notifications.
+
+```
 Animating a Change
 
 Animating a Badge with the animation, when the number
@@ -536,8 +527,7 @@ If animation == false; do not add a css class.
             onShowSidebar
         }) => (
             <div className="content">
-                {children
-                {!isSidebarVisible && (
+                {children}                {!isSidebarVisible && (
                     <button onClick={onShowSidebar}>
                         Show
                     </button>
