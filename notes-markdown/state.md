@@ -547,3 +547,17 @@ If animation == false; do not add a css class.
             </div>
         );
 ```
+
+```
+	Avoid Creating a new function in render when
+
+      (a) the child component receiving the function props is "pure"
+
+      (b) You expect the parent component to re-render often.
+      
+      Props are evaluated before they passed down, when written
+      without the arrow function, onTabChange would be called
+      when nav renders, instead of when the link is clicked.
+
+      Function components and classes that extend Component are not pure, they always re-render even if their props haven't changed. If a class extends PureComponent Instead, though it is pure and it will skip re-rendering when its props are unchanged. Avoiding needless re-renders is the easiest way to improve performance in a React app.
+```
