@@ -1,11 +1,9 @@
-import React from "react";
-import Nav from "./Nav";
-import ItemPage from "./ItemPage";
+import React from 'react';
+import Nav from './Nav';
+import ItemPage from './ItemPage';
 import CartPage from './CartPage';
-
-import {items} from "./static-data";
-
-import "./App.css";
+import {items} from './static-data';
+import './App.css';
 
 class App extends React.Component {
     state = {
@@ -27,34 +25,17 @@ class App extends React.Component {
         });
     };
 
-    // renderCart() {
-    //     // Count how many of each item is in the cart
-    //     let itemCounts = this.state.cart.reduce((itemCounts, itemId) => {
-    //         itemCounts[itemId] = itemCounts[itemId] || 0;
-    //         itemCounts[itemId]++;
-    //         return itemCounts;
-    //     }, {});
-
-    //     // Create an array of items
-
-    //     let cartItems = Object.keys(itemCounts).map(itemId => {
-    //         // Find the item by its id
-    //         var item = items.find(item =>
-    //                               item.id = parseInt(itemId, 10)
-    //                              );
-
-    //         // Create a new "item" and add the "count" property
-    //         return {
-    //             ...item,
-    //             count: itemCounts[itemId]
-    //         };
-    //     });
-
-    //     return (
-    //         <CartPage items={cartItems}/>
-    //     );
-    // }
-
+    handleRemoveOne = (item) => {
+        let index = this.state.cart.indexOf(item.id);
+        this.setState({
+            cart: [
+                // left half of array, upto index not including index
+                ...this.state.cart.slice(0, index),
+                ...this.state.cart.slice(index + 1)
+            ]
+        });
+    }
+    
     renderCart() {
         // Count how many of each item is in the cart
         let itemCounts = this.state.cart.reduce((itemCounts, itemId) => {
@@ -64,19 +45,26 @@ class App extends React.Component {
         }, {});
 
         // Create an array of items
+        // Object.keys returns an array of the keys in an object.
         let cartItems = Object.keys(itemCounts).map(itemId => {
+
             // Find the item by its id
             var item = items.find(item =>
-              item.id === parseInt(itemId, 10)
+               item.id === parseInt(itemId, 10)
             );
+            
             // Create a new "item" and add the 'count' property
             return {
                 ...item,
-                count : itemCounts[itemId]
+                count: itemCounts[itemId]
             };
         });
         return (
-            <CartPage items={cartItems} />
+            <CartPage
+              items={cartItems}
+              onAddOne={this.handleAddToCart}
+              onRemoveOne={this.handleRemoveOne}
+            />
         );
     }
 // ...
