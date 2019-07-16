@@ -5,10 +5,11 @@ import CartPage from './CartPage';
 import {items} from './static-data';
 import './App.css';
 
-class App extends React.Component {
+class App extends React.PureComponent {
     state = {
         activeTab: 0,
-        cart: []
+        cart: [],
+        total: []
     };
 
     handleChange = (index) => {
@@ -34,7 +35,7 @@ class App extends React.Component {
                 ...this.state.cart.slice(index + 1)
             ]
         });
-    }
+    }     
     
     renderCart() {
         // Count how many of each item is in the cart
@@ -43,25 +44,37 @@ class App extends React.Component {
             itemCounts[itemId]++;
             return itemCounts;
         }, {});
-
+        
         // Create an array of items
         // Object.keys returns an array of the keys in an object.
-        let cartItems = Object.keys(itemCounts).map(itemId => {
-
-            // Find the item by its id
+        let cartItems = Object.keys(itemCounts).map(itemId => {            
             var item = items.find(item =>
                item.id === parseInt(itemId, 10)
-            );
-            
-            // Create a new "item" and add the 'count' property
+            );            
+ 
             return {
                 ...item,
                 count: itemCounts[itemId]
             };
         });
+
+        let items_price = [];
+        cartItems.map(item => {
+            items_price.push(item.count*item.price);
+            return items_price;
+        });
+
+        let cartTotal = items_price.reduce((prev, cur) => {
+            return prev + cur;
+        }, 0);
+          
         return (
             <CartPage
+              activeTab={this.state.activeTab}
+              onTabChange={this.handleChange}
               items={cartItems}
+              cartLength={this.state.cart.length}
+              cartTotal={cartTotal}
               onAddOne={this.handleAddToCart}
               onRemoveOne={this.handleRemoveOne}
             />
@@ -73,23 +86,19 @@ class App extends React.Component {
         switch(this.state.activeTab) {
         default:
         case 0:
+            let {activeTab} = this.state;
             return (
-                <ItemPage items={items} onAddToCart={this.handleAddToCart}/>
+                <ItemPage activeTab={activeTab} onTabChange={this.handleChange} items={items} onAddToCart={this.handleAddToCart}/>
             );
         case 1:
             return this.renderCart();
         }
-    }    
+    }
 
     render() { 
-        let {activeTab} = this.state;
         return (
             <div className="App">
-              <Nav activeTab={activeTab} onTabChange={this.handleChange}/>
               <main className="App-content">
-                <div>
-                  {this.state.cart.length} items
-                </div>
                 {this.renderContent()}
               </main>
             </div>

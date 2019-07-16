@@ -13,7 +13,7 @@ import React from 'react';
 //     </nav>
 // );
 
-const Nav = ({ activeTab, onTabChange }) => (
+const Nav = ({ activeTab, onTabChange, children }) => (
     <nav className="App-nav">
       <ul>
         <li className={`App-nav-item ${activeTab === 0 && `selected`}`}>
@@ -22,6 +22,7 @@ const Nav = ({ activeTab, onTabChange }) => (
         <li className={`App-nav-item ${activeTab === 1 && 'selected'}`}>
           <NavLink index={1} onClick={onTabChange}>Cart</NavLink>
         </li>
+        {children}
       </ul>
     </nav>
 );
