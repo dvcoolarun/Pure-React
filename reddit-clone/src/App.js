@@ -1,90 +1,66 @@
 import React from 'react';
-import {data} from './static-data';
-import './App.css';
+import RedditList from './RedditList';
+import {items} from './static-data';
+import './App.css';		
 
 class App extends React.Component {
     state = {
-        upVotes: [],
-        downVotes: []
+        score: []
     };
+
+    handleUpVote = (item) => {
+        const update_score = [...this.state.score];
+        update_score[item.id] = update_score[item.id] + 1;
+        
+        this.setState({
+            score: update_score
+        });
+    };
+
+    handleDownVote = (item) => {
+        const update_score = [...this.state.score];
+        update_score[item.id] = update_score[item.id] - 1;
+        
+        this.setState({
+            score: update_score
+        });
+    };
+    
+    renderList() {
+        let scoreList = [];
+        items.map(item => {
+            scoreList.push(item.score);
+            return scoreList;
+        });
+
+        /* Error Maximum Depth exceeded. This will happen when a component
+          repetadally calls setState inside ComponentWillUpdate or ComponentDidUpdte, React limits numbers of nested updates to prevent infinite loops */
+        
+        // let scoreList = items.map(item => {
+        //     this.setState({
+        //         score: [...this.state.score, item.score]
+        //     });
+        //     return this.state.score;
+        // });
+
+        return (
+            <RedditList items={items}
+                        handleUpVote={this.handleUpVote}
+                        handleDownVote={this.handleDownVote}
+                        scoreList={scoreList}
+                        />
+        );
+    };
+    
+    render() {
+        return (
+            <div className="App">
+              <main className="App-content">
+                {this.renderList()}
+              </main>
+            </div>
+        );
+    }
 }
 
-const redditList = ({ data }) => (
-    <div classsName="reddit-list">
-      <div>
-        {data.map(item =>
-                  <RedditListItem key={item.id} item={item}/>
-                 )};
-      </div>
-    </div>
-);
-
-const RedditListItem = ({ item }) => (
-    <div className="reddit-item">
-      <Counter upVote={} downVote={}/>
-      <Image image={}/>
-      <Title title={}/>
-      <Link link={}/>
-      <Time time={}/>
-      <User user={}/>
-      <Comment comment={}/>
-      <StaticItems/>
-    </div>
-);
-
-this.handleUpVote = (item) => {
-    this.setState({
-        upVotes: [...this.state.upVotes, (this.state.upVotes[item.id] + 1)]
-    });
-};
-
-this.handleDownVote = (item) => {
-    this.setState({
-        downVotes: [...this.state.downVotes, (this.state.downVotes[item.id] + 1)]
-    });
-};
-
-const Counter = ({ upVote, downVote }) => (
-    
-);
-
-const Image = ({ image }) => (
-    
-);
-
-const Title = ({ title }) => (
-
-);
-
-const Link = ({ link }) => (
-
-);
-
-const Time = ({ time }) => (
-    
-);
-
-const User = ({ user }) => (
-
-);
-
-const Comment = ({ comment }) => (
-    
-);
-
-const StaticItems = ({ }) => (
-    <div className="static-items">
-      <span className="static-item">
-        Share
-      </span>
-      <span className="static-item">
-        Save
-      </span>
-      <span className="static-item">
-        Hide
-      </span>
-      <span className="static-item">
-        Report
-      </span>
-    </div>
-);
+export default App;
