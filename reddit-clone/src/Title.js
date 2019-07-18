@@ -7,4 +7,8 @@ const Title = ({ title }) => (
     </span>
 );
 
+Title.propTypes = {
+    title: PropTypes.string.isRequired
+};
+
 export default Title;

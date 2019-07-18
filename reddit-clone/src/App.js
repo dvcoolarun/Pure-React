@@ -8,55 +8,44 @@ class App extends React.Component {
         score: []
     };
 
-    handleUpVote = (item) => {
+    handleUpVote = (index) => {
         const update_score = [...this.state.score];
-        update_score[item.id] = update_score[item.id] + 1;
+        update_score[index] = update_score[index] + 1;
         
         this.setState({
             score: update_score
         });
     };
 
-    handleDownVote = (item) => {
+    handleDownVote = (index) => {
         const update_score = [...this.state.score];
-        update_score[item.id] = update_score[item.id] - 1;
+        update_score[index] = update_score[index] - 1;
         
         this.setState({
             score: update_score
         });
     };
-    
-    renderList() {
-        let scoreList = [];
-        items.map(item => {
-            scoreList.push(item.score);
+
+    componentDidMount() {
+        let scoreList = [];	
+        items[0].data.children.map(item => {
+            scoreList.push(item.data.score);
             return scoreList;
         });
-
-        /* Error Maximum Depth exceeded. This will happen when a component
-          repetadally calls setState inside ComponentWillUpdate or ComponentDidUpdte, React limits numbers of nested updates to prevent infinite loops */
+        this.setState({
+            score: [...scoreList]
+        });
+    }
         
-        // let scoreList = items.map(item => {
-        //     this.setState({
-        //         score: [...this.state.score, item.score]
-        //     });
-        //     return this.state.score;
-        // });
-
-        return (
-            <RedditList items={items}
-                        handleUpVote={this.handleUpVote}
-                        handleDownVote={this.handleDownVote}
-                        scoreList={scoreList}
-                        />
-        );
-    };
-    
     render() {
         return (
             <div className="App">
               <main className="App-content">
-                {this.renderList()}
+                <RedditList items={items[0].data.children}
+                        handleUpVote={this.handleUpVote}
+                        handleDownVote={this.handleDownVote}
+                        scoreList={this.state.score}
+                        />
               </main>
             </div>
         );

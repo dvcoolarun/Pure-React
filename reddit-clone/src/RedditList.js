@@ -4,12 +4,22 @@ import RedditListItem from './RedditListItem';
 
 const RedditList = ({ items, handleUpVote, handleDownVote, scoreList }) => (
     <div className="reddit-list">
-      <div>
-        {items.map(item =>
-                   <RedditListItem item={item} key={item.id} handleUpVote={handleUpVote} handleDownVote={handleDownVote} scoreList={scoreList}/>
+      {items.map(item =>
+                 <RedditListItem item={item}
+                                 index={items.indexOf(item)}
+                                 key={item.data.id}
+                                 handleUpVote={() => handleUpVote(items.indexOf(item))}
+                                 handleDownVote={() => handleDownVote(items.indexOf(item))}
+                                 scoreList={scoreList}/>
                  )}
-      </div>
     </div>
 );
+
+RedditList.propTypes = {
+    items: PropTypes.array.isRequired,
+    handleUpVote: PropTypes.func.isRequired,
+    handleDownVote: PropTypes.func.isRequired,
+    scoreList: PropTypes.array.isRequired
+};
 
 export default RedditList;

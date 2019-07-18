@@ -1,33 +1,50 @@
-.App {
-  text-align: center;
+body{
+    background: #eee;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
+.reddit-list {
+    width: 800px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.reddit-item {
+    background: #fff;
+    padding: 20px;
 }
 
-.App-link {
-  color: #61dafb;
+div.counter {
+    padding: 10px;
+    border: 1px solid;
+    display: inline-block;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+div.image {
+    padding: 10px;
+    border: 1px solid;
+    display: inline-block;
 }
+
+div.content {
+    width: 60%;
+    padding: 10px;
+    border: 1px solid;
+    display: inline-block;
+}
+
+.static-item {
+    margin: 0 3%;
+}
+
+.up-arrow, count, .down-arrow{
+    display: block;
+}
+
+div.counter, div.image, div.content {
+    margin-right: 5%;
+}
+
+.title, .time-user-detail, .detail-line {
+    margin: 5% 0;
+}
+

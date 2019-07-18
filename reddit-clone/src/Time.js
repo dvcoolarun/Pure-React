@@ -11,4 +11,8 @@ const Time = ({ time }) => {
     );
 };
 
+Time.propTypes = {
+    time: PropTypes.number.isRequired
+};
+
 export default Time;
