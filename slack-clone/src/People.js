@@ -1,10 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const People = ({ peopleList }) => (
+const People = ({ peopleList, handleSelction}) => (
     <div className="people-list">
-      {peopleList.map(people =>
-                      <span>{people}</span>
+      {peopleList.map(name =>
+                      <span onClick={() => handleSelction(people.concat({name}))}>
+                        {name}
+                      </span>
                      )}
     </div>
 );

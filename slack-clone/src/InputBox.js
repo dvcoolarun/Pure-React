@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
  
-const InputBox = ({ selection }) => (
+const InputBox = () => (
     <div>
-      <input type="text" onKeyPress={this.handleKeyPress}/>
+      <input type="text" onKeyPress={handleKeyPress}/>
     </div>
 );
+
+export default InputBox;

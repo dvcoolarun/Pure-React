@@ -97,7 +97,7 @@
 			}
 		]
 	},
-	"People": {
+	"people": {
 		"Dave": [{
 				"name": "Dave",
 				"Date": "JUL 27,2018",

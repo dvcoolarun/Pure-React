@@ -3,10 +3,10 @@ import Channels from './Channels';
 import People from './People';
 import PropTypes form 'prop-types';
 
-const Sidebar = ({ channelList, peopleList }) => (
+const Sidebar = ({ channelList, peopleList, handleSelection }) => (
     <div className="sidebar">
-      <Channels channeList={channelList}/>
-      <People peopleList={peopleList}/>
+      <Channels channeList={channelList} handleSelection={handleSelection}/>
+      <People peopleList={peopleList} handleSelection={handleSelection}/>
     </div>
 );
 

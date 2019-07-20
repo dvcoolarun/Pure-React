@@ -11,5 +11,6 @@ const MessageList = ({ messageList }) => (
                          message={item.message}
                        />
                       )}
+      <InputBox/>
     </div>
 );

@@ -23,15 +23,22 @@ class App extends React.Component {
 
     handleKeyPress = (event, selection) => {
         if(event.key === 'Enter'){
-            // handling updation of state
-            // based on the keypress
+            // Update the State of Selected
+            // Item on the Enter KeyPress
         }
     }
 
-    handleSelectRender({name}) {
-        return (
-            <MessageList messagelist={this.state[name]}/>
-        );
+    handleSelection = (selection) => {
+        if (selection) {
+            return (
+                <MessageList messagelist={this.state[selection]}/>
+            );
+        }
+        else {
+            return (
+                <MessageList messagelist={this.state.channels.general}/>
+            );
+        } 
     }
 
     render() {
@@ -40,11 +47,13 @@ class App extends React.Component {
               <main className="App-content">
                 <Sidebar
                   channelList={this.state.channel.keys()}
-                  peopleList={this.state.people.keys()}/>
+                  peopleList={this.state.people.keys()}
+                  handleSelection={this.handleSelection()}/>
               </main>
             </div>
         );
     }
 }
+
 
 export default App;
