@@ -1,11 +1,11 @@
 import React from 'react';
 import Channels from './Channels';
 import People from './People';
-import PropTypes form 'prop-types';
+import PropTypes from 'prop-types';
 
 const Sidebar = ({ channelList, peopleList, handleSelection }) => (
     <div className="sidebar">
-      <Channels channeList={channelList} handleSelection={handleSelection}/>
+      <Channels channelList={channelList} handleSelection={handleSelection}/>
       <People peopleList={peopleList} handleSelection={handleSelection}/>
     </div>
 );
